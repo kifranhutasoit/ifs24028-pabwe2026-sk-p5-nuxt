@@ -23,7 +23,5 @@ watch(
 </script>
 
 <template>
-  <main>
-    <RouterView />
-  </main>
-</template>
+  <RouterView />
+</template>npx vitest run --coverage
