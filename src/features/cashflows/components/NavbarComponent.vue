@@ -77,7 +77,7 @@ async function onLogout() {
             {{ displayName }}
           </p>
           <p class="text-xs leading-tight text-slate-600">
-            @{{ username}} ·
+            @{{ username }} ·
             <span class="font-medium text-emerald-700">Sesi aktif</span>
           </p>
         </div>
@@ -86,8 +86,9 @@ async function onLogout() {
         type="button"
         class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
         data-testid="logout-button"
+        aria-label="Keluar"
         @click="onLogout">
-        <LogOut class="h-4 w-4" />
+        <LogOut class="h-4 w-4" aria-hidden="true" />
         <span class="hidden sm:inline">Keluar</span>
       </button>
     </div>
