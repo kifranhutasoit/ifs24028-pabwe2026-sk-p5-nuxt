@@ -3,18 +3,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "preview": "nuxt preview",
-    "start": "node start.mjs",
-    "dev:vite": "vite --config vitest.config.ts",
-    "build:vite": "vite build --config vitest.config.ts",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@pinia/nuxt": "^1.0.2",
     "@toast-ui/editor": "^3.2.2",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^1.0.0",
