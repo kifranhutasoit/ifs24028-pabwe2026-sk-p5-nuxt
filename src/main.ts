@@ -1,8 +1,7 @@
-import { createRouter, createWebHistory, type RouterHistory } from "vue-router";
-import { routes } from "./routes";
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
+import router from "./router";
+import "./index.css";
 
-export function createAppRouter(history: RouterHistory = createWebHistory()) {
-  return createRouter({ history, routes });
-}
-
-export default createAppRouter();
+createApp(App).use(createPinia()).use(router).mount("#app");
