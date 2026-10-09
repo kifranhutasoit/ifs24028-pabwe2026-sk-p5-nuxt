@@ -1,9 +1,8 @@
-// Entry point khusus mode Vite murni (`bun run dev:vite`).
-// Saat dijalankan lewat Nuxt, berkas ini tidak dipakai.
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import App from "./App.vue";
-import { createAppRouter } from "./router";
-import "./index.css";
+import { createRouter, createWebHistory, type RouterHistory } from "vue-router";
+import { routes } from "./routes";
 
-createApp(App).use(createPinia()).use(createAppRouter()).mount("#app");
+export function createAppRouter(history: RouterHistory = createWebHistory()) {
+  return createRouter({ history, routes });
+}
+
+export default createAppRouter();
