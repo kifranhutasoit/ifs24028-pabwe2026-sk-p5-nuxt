@@ -1,13 +1,54 @@
-import { createRouter, createWebHistory, type RouterHistory } from "vue-router";
-import { routes } from "./routes";
+import type { RouteRecordRaw } from "vue-router";
 
-/**
- * Membuat instance router. Dipakai oleh mode Vite murni (main.ts) dan pengujian.
- * Pada Nuxt, rute disuplai lewat src/router.options.ts.
- */
-export function createAppRouter(history?: RouterHistory) {
-  return createRouter({
-    history: history ?? createWebHistory(),
-    routes,
-  });
-}
+export const routes: RouteRecordRaw[] = [
+  {
+    path: "/auth",
+    component: () => import("./features/auth/layouts/AuthLayout.vue"),
+    meta: { guestOnly: true },
+    children: [
+      { path: "", redirect: "/auth/login" },
+      {
+        path: "login",
+        name: "login",
+        component: () => import("./features/auth/pages/LoginPage.vue"),
+      },
+      {
+        path: "register",
+        name: "register",
+        component: () => import("./features/auth/pages/RegisterPage.vue"),
+      },
+    ],
+  },
+  {
+    path: "/",
+    component: () => import("./features/cashflows/layouts/CashFlowLayout.vue"),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: "",
+        name: "home",
+        component: () => import("./features/cashflows/pages/HomePage.vue"),
+      },
+      {
+        path: "cash-flows/:cashFlowId",
+        name: "cash-flow-detail",
+        component: () => import("./features/cashflows/pages/DetailPage.vue"),
+      },
+      {
+        path: "users",
+        name: "users",
+        component: () => import("./features/users/pages/UsersPage.vue"),
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: () => import("./features/users/pages/ProfilePage.vue"),
+      },
+    ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("./features/common/pages/NotFoundPage.vue"),
+  },
+];
