@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
@@ -33,7 +34,30 @@ export default defineConfig(({ mode }) => {
       DELCOM_BASEURL: JSON.stringify(env.VITE_DELCOM_BASEURL || "/api"),
     },
     test: {
-      // ... bagian test tetap seperti sebelumnya
+      globals: true,
+      environment: "jsdom",
+      setupFiles: "./src/setupTests.ts",
+      coverage: {
+        provider: "v8",
+        reporter: ["text", "json", "html", "lcov"],
+        include: ["src/**/*.{js,ts,vue}"],
+        exclude: [
+          "src/main.ts",
+          "src/router.options.ts",
+          "src/setupTests.ts",
+          "src/test-utils.ts",
+          "src/**/*.d.ts",
+          "**/*.test.{js,ts,jsx,tsx}",
+          "node_modules/**",
+          ".docs/**",
+        ],
+        thresholds: {
+          lines: 100,
+          functions: 100,
+          branches: 100,
+          statements: 100,
+        },
+      },
     },
   };
 });
