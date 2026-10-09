@@ -106,6 +106,15 @@ describe("ProfilePage", () => {
     expect(spies.changeProfile).toHaveBeenCalledWith("Nama Baru", "ifs18005@del.ac.id");
   });
 
+  it("menyimpan profil dengan email yang diubah", async () => {
+    const { wrapper, spies } = await setup({ profile });
+
+    await wrapper.find("#profile-email").setValue(" baru@del.ac.id ");
+    await wrapper.find("[data-testid=profile-form]").trigger("submit");
+
+    expect(spies.changeProfile).toHaveBeenCalledWith("Abdullah Ubaid", "baru@del.ac.id");
+  });
+
   it("mengabaikan pemilihan foto bila files null atau kosong", async () => {
     const { wrapper, spies } = await setup();
 
